@@ -11,6 +11,11 @@ function readyNow() {
     $('#division').on('click', determineOperator);
     $('#multiplication').on('click', determineOperator);
     $('#doMath').on('click', queueCalculation);
+    $('#clearIn').on('click', clearInputs)
+}
+
+function clearInputs(){
+    $('.numberInput').val('')
 }
 
 function serveCalculations() {
