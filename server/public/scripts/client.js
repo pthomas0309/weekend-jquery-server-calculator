@@ -1,7 +1,7 @@
 //call jQuery run readyNow
 $(readyNow);
 //empty array to hald the calculations
-let calcHistory = [];
+let calcQuery = [];
 //ready now handles click listeners
 function readyNow(){
     console.log('jQ');
@@ -11,30 +11,57 @@ function readyNow(){
     $('#division').on('click', determineOperator);
     $('#multiplication').on('click', determineOperator);
     $('#doMath').on('click', queueCalculation)
+    //make a promise to the server
+    serveCalculations();
 }
+
+function serveCalculations(){
+    //plan a GET route from the server to pull the array of calculations to client side
+    $.ajax({
+        method: 'GET',
+        url: '/calculations'
+    }).then(response => {
+        //check the res.send
+        console.log(response);
+    });
+}
+
 //create an object with the method of calculation
-function determineOperator(event){
+function determineOperator(){
     //create variable for the operatorType data on button
     let currentOperator = $(this).data('operator');
     console.log('clicked', currentOperator);
     //clear array
-    calcHistory.length = 0;
-    console.log(calcHistory);
+    calcQuery.length = 0;
+    console.log(calcQuery);
     //create object
     let calculatorInput = {
         //operator is determined by the event data of the click listener
         operator: currentOperator
     }
-    calcHistory.push(calculatorInput);
-    console.log(calcHistory);
+    calcQuery.push(calculatorInput);
+    console.log(calcQuery);
 }
 
 function queueCalculation(){
-    for (let calculation of calcHistory){
+    for (let calculation of calcQuery){
         //create inputOne property and set it equal to the value of the first input
         calculation.inputOne = $('#integerOne').val();
         //create inputTwo property and set it equal to the value of the second input
         calculation.inputTwo = $('#integerTwo').val();
-        console.log(calcHistory);
+        console.log(calcQuery);
     }
+    //var to access the calcQuery
+    const calculation = calcQuery[0];
+     //post the calculation query to the server side container
+    $.ajax({
+        method: 'POST',
+        //route to server
+        url: '/calculations',
+        //data to send
+        data: calculation
+    }).then(response => {
+        //check response
+        console.log(response);
+    })
 }
