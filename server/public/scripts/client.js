@@ -11,8 +11,6 @@ function readyNow(){
     $('#division').on('click', determineOperator);
     $('#multiplication').on('click', determineOperator);
     $('#doMath').on('click', queueCalculation)
-    //make a promise to the server
-    serveCalculations();
 }
 
 function serveCalculations(){
@@ -64,4 +62,6 @@ function queueCalculation(){
         //check response
         console.log(response);
     })
+     //make a promise to the server
+     serveCalculations();
 }
