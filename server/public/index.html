@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,19 +10,31 @@
     <script src="./scripts/client.js"></script>
     <title>Calculate</title>
 </head>
+
 <body>
-    <h1>CALCULATOR</h1>
-    <!-- input for first integer -->
-    <input type="number" id="integerOne">
-    <!-- buttons to decide operators -->
-    <button data-operator="+" id="addition">+</button>
-    <button data-operator="-" id="subtraction">-</button>
-    <button data-operator="/" id="division">/</button>
-    <button data-operator="*" id="multiplication">*</button>
-    <!-- input for second integer -->
-    <input type="number" id="integerTwo">
-    <!-- buttons to execute logic and clear inputs -->
-    <button id="doMath">=</button>
-    <button id="clearIn">C</button>
+    <header>
+        <h1>CALCULATOR</h1>
+    </header>
+    <section id="calculator">
+        <!-- input for first integer -->
+        <input type="number" id="integerOne">
+        <!-- buttons to decide operators -->
+        <button data-operator="+" id="addition">+</button>
+        <button data-operator="-" id="subtraction">-</button>
+        <button data-operator="/" id="division">/</button>
+        <button data-operator="*" id="multiplication">*</button>
+        <!-- input for second integer -->
+        <input type="number" id="integerTwo">
+        <!-- buttons to execute logic and clear inputs -->
+        <button id="doMath">=</button>
+        <button id="clearIn">C</button>
+    </section>
+    <section id="answer">
+    </section>
+    <section>
+        <ul id="calcHistory">
+        </ul>
+    </section>
 </body>
+
 </html>
